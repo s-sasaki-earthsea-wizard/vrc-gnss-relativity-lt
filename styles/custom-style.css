@@ -139,14 +139,14 @@
     color: #24292e;
 }
 
-.profile-container {
+.reveal .slides .profile-container {
     display: flex;
     width: 100%;
-    gap: 125px;  /* 左右のカラム間のスペース */
+    gap: 125px;
 }
 
 /* プロフィールカード用のカラム */
-.profile-left {
+.reveal .slides .profile-left {
     flex: 10;
     background-color: #f8f9fa;
     border-radius: 30px;
@@ -163,7 +163,7 @@
 }
 
 /* アバター画像用のカラム */
-.profile-right {
+.reveal .slides .profile-right {
     flex: 10;
     display: flex;
     align-items: center; 
