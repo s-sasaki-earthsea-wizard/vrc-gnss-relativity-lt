@@ -12,7 +12,7 @@
     padding-left: 0;
     margin-left: -2%;
     margin-right: -2%;
-    gap: 15px;
+    gap: 45px;
 }
   
 .col {
@@ -26,7 +26,7 @@
     padding: 10px;
     text-align: left;
     margin-left: -5%;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .col-right {
@@ -34,7 +34,7 @@
     padding: 10px;
     text-align: left;
     margin-right: -5%;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .col-image-container {

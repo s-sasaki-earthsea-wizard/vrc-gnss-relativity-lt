@@ -4,39 +4,57 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>GPSと2つの相対論 〜人工衛星の時計は運動によって遅れ、地球の重力によって進む〜</title>
+		<title>GPSで活躍する相対論！　〜人工衛星はどのようにスマートフォンの位置を測るのか？〜</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/sky.css">
-		
+		<link rel="stylesheet" href="styles/custom-style.css">
+
 		<!-- Add KaTeX CSS and JS -->
 		<link rel="stylesheet" href="plugin/math/katex.min.css">
-		<script src="plugin/math/katex.min.js"></script>
+		<script src="plugin/math/katex.js"></script>
 		<script src="plugin/math/math.js"></script>
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		
-		<link rel="stylesheet" href="styles/custom-style.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
+				<section data-markdown data-separator="---">
+					<textarea data-template>
 
-## GPSと2つの相対論
-### 〜🛰️人工衛星の時計は運動によって遅れ🕐⤵️、地球の重力によって進む🕐⤴️〜
+## 🛰️GPSで活躍する相対論！
+### 〜人工衛星はどのように📱スマートフォンの位置を測るのか？〜
+
+<div class="container">
+
+<div class="col-left">
+
+<img src="assets/images/circle_normals.png" height="350px">
+
+
+</div>
+
+<div class="col-right">
+
+<img src="assets/images/square_normals.png" height="350px">
+
+</div>
+
+</div>
 
 ---
 
 ### 自己紹介
 
 <div class="profile-container">
-<div class="profile-left" data-markdown>
+<div class="profile-left">
 
-* さめ(meg-ssk)
-* 🧑‍💻 フリーランスのソフトウェアエンジニア
+* さめ(мег-сск)
+  * 🧑‍💻 フリーランスのソフトウェアエンジニア
+  * 🧑‍🎓 社会人学生として通信制大学在学中
 * 得意分野:
 	* 📸 コンピュータビジョン (画像認識/点群処理)
 	* 🌍 空間情報処理 (地理情報/リモートセンシング)
@@ -44,6 +62,7 @@
 * [GitHub](https://github.com/s-sasaki-earthsea-wizard)
 * [YouTube](https://www.youtube.com/@SyotaSasaki-EW)
 * [Speaker Deck](https://speakerdeck.com/syotasasaki593876)
+
 </div>
 
 <div class="profile-right">
@@ -57,10 +76,46 @@
 
 ### 今日話すこと
 
-*  GPSなどのGNSSはどうやって位置を測定しているのか？
-  * 相対論効果を一切考慮しないケース (幾何光学)
+<div class="simple-box">
+
+* 🛰️GPSなどのGNSSはどうやって位置を測定しているのか？
+  * 相対論効果を考慮しないケース (幾何光学)
   * 特殊相対論効果の影響
   * 一般相対論効果の影響
+
+</div>
+
+</br>
+
+<div class="highlight-box">
+
+* 📱スマートフォンが🗾地図アプリなどであなたの位置を教えてくれる時、何が起きているのかわかります！
+
+</div>
+
+---
+
+### 前提とする仮定
+
+<div class="simple-box">
+
+* 地球は球
+* 地球は自転しない
+* 地球は電気的に中性
+* 地球の質量分布は均一
+* 地球に大気は存在しない (真空である)
+* 地球以外の天体(月など)は存在しない
+
+</div>
+
+</br>
+
+<div class="highlight-box">
+
+* 実際の地球とかけ離れているけど、これで問題をシンプルにします！
+  * でも意外とこの近似でOKです
+
+</div>
 
 ---
 
@@ -68,67 +123,123 @@
 
 ---
 
-### FOT (Flight of Time)による位置測定
+### 距離測定の簡単な例
 
-* iPhoneのLiDARなどが代表例
-* マイクロ波を発射して反射波を受信する
-* 反射波の到着時間から距離を計算する
+<div class="simple-box">
 
-$$ \Delta t = \frac{2\Delta d}{c} $$
+- 時刻$t=0 \ (\mathrm{s})$に地点$A$から速度$v=10 \ (\mathrm{m/s})$で地点$B$に移動を始める
+- 時刻$t=10 \ (\mathrm{s})$に地点$B$に着いた
+- $AB$間の距離は?
+
+</div>
+
+$$
+||AB|| = 10 \ (\text{m/s}) \times 10 \ (\text{s}) = 100 \text{m}
+$$
+
+<div class="highlight-box">
+
+- **2点間の距離は速さ$\times$時間で計算できる！**
+
+</div>
 
 ---
 
-### 人工衛星による測位 (衛星が1つの時)
+### 光による距離測定
 
-* 電磁波を送信して反射波を受信するまでの時間がわかる
-* 衛星の位置がわかれば、その衛星からの距離がわかる
-* 衛星が1つの時、その衛星中心とした球面上にいる
-* 球面上の点は3つの自由度(半径、緯度と経度)を持つ
+<div class="simple-box">
 
+* 光の速さ: 
+  * $c = 3.0 \times 10^8 \text{(m/s)}$
+* 人工衛星が時刻$t_0$に地点$P$から電磁波を送信する
+* 時刻$t_0 + \Delta t$に地点$Q$でスマートフォンが電磁波を受信する
+* 地点$P$と地点$Q$の距離は?
+
+</div>
+
+</br>
+
+<div class="highlight-box">
+
+* 基本は同じ： 距離 = 光の速さ $\times$ 時間
+
+$$ 
+||PQ|| = c \Delta t
 $$
-\begin{cases}
-x = r \cos \theta \sin \phi \\
-y = r \sin \theta \sin \phi \\
-z = r \cos \phi
-\end{cases}
-$$
+
+</div>
 
 ---
 
-### 人工衛星による測位 (衛星が2つの時)
+### 1つの人工衛星による測位
 
-* 衛星が2つの時、2つの球が得られる (ただしr1 + r2 < ||r1 - r2||)
-* 2つの球の交線は円
-* つまり円周上のどこかにいることがわかる
-* 円周上の点は2つの自由度(半径と角度)を持つ
+<div class="simple-box">
 
-$$
-\begin{cases}
-x = r \cos \theta \\
-y = r \sin \theta
-\end{cases}
-$$
+* 人工衛星1が電波を時刻$t_0$に地点$P_1$から送信する
+* $\Delta t$後に地点$Q$でスマートフォンが電波を受信する
+* 地点$P_1$と地点$Q$の距離は$R_1 = c \Delta t$
+
+</div>
 
 ---
 
-### 人工衛星による測位 (衛星が3つの時)
+### スマートフォンはどこにあるか？
 
-* 衛星が3つの時、3つの球が得られる
-* 円と球の交点は2点
-* つまり、2つのどちらかにまで絞られる。
-  * 自由度は1
-* 地上のカーナビやスマホはこれで十分
-  * 2つのうち地上に近い方を選ぶ
+<div class="highlight-box">
+
+* $P_1$を中心とする半径$R_1$の球面$S_1$の表面のどこかにいる！
+
+</div>
 
 ---
 
-### 人工衛星による測位 (衛星が4つの時)
+### 2つの人工衛星による測位
 
-* 衛星が4つの時、4つの球が得られる
-* 新しく追加された球は2つの交点のうち、1つのみを通る
-* つまり、1つの点にまで絞られる
-  * 自由度は0
-* 航空機の精密測位には4つ目が必要
+<div class="simple-box">
+
+* 2つの人工衛星から同様に距離を測定したとする
+  * スマートフォンは球$S_1$の表面のどこかにいる
+  * かつ球$S_2$の表面のどこかにいる
+
+</div>
+
+---
+
+### スマートフォンの位置を絞り込む
+
+<div class="highlight-box">
+
+* 2つの球の共通部分は円
+* つまり円$C$の円周上のどこかにいる！
+* **衛星の数を増やしてさっきよりも絞り込めた！**
+
+</div>
+
+---
+
+### 3つの人工衛星による測位
+
+<div class="simple-box">
+
+* 3つ目の衛星から球$S_3$を得る
+* 衛星が2つの時、円$C$の円周上のどこかにいることがわかった
+* 円$C$と球$S_3$の交点は2点
+* **つまり、2つの点のどちらかにまで絞られる！**
+
+</div>
+
+---
+
+### 4つの人工衛星による測位
+
+<div class="simple-box">
+
+* 4つ目の衛星から球$S_4$を得る
+* 2つの候補のうち、1つのみを通る
+* **1つの点にまで絞られる！**
+* **4つの人工衛星から距離測定をして、スマートフォンの位置$Q$を特定できる！**
+
+</div>
 
 ---
 
@@ -136,55 +247,116 @@ $$
 
 ---
 
-### 特殊相対論とは？
+### 特殊相対論の重要な主張
 
-* 高速で運動する物体は時間が遅くなる
+<div class="container">
+
+<div class="col-left">
+
+<div class="simple-box">
+
+* 高速で運動する物体は静止している観測者から見て、時間の進みがゆっくりになる
+  * 説明の簡単化のためものすごく簡略化しています
+
+</div>
+
+</div>
+
+<div class="col-right">
+
+<img src="assets/images/einstein_1905.png" width="500px">
+
+</div>
+
+</div>
 
 ---
 
-### 光速度不変の原理
+### 特殊相対論の主張の具体例
 
-* 光の速度は誰から見ても同じ
-* 等速直線運動をする光源から出た光の速度は、光源の速度によらない
-* しかし移動する光源AからB地点にまで光が到達する時間Aから見てもBから見ても同じ
-* 観測者によって時間が伸び縮みしている
+<div class="simple-box">
+
+* 地球に対して速度$v$で等速直線運動するロケットを考える
+* 地球から見た時、ロケットの時計は地球の時計よりゆっくり進む
+
+</div>
 
 ---
 
-### Lorentz変換
+### ローレンツ因子
 
-* 観測者と光源の相対速度によって時間が伸び縮みする
+</br>
+
+<div class="highlight-box">
+
+* ロケットの時計が$t'$秒進んだ時、地球の時計は$t$秒経過している
+  * この$\gamma$はローレンツ因子と呼ばれる
 
 $$
-\begin{cases}
-t' = \gamma (t - \frac{v}{c^2}x) \\
-x' = \gamma (x - vt)
-\end{cases}
+t' = \frac{t}{\sqrt{1 - v^2/c^2}} = \gamma t
 $$
 
-ここで:
-- $t$: 観測者から見た時間
-- $t'$: 光源から見た時間
-- $x$: 観測者から見た位置
-- $x'$: 光源から見た位置
-- $v$: 光源の速度
-- $c$: 光速
+</div>
 
 ---
 
-### Lorentzブースト
+### 時計の遅れの簡単な例
 
-$$ \gamma = \frac{1}{\sqrt{1-v^2/c^2}} $$
+<div class="simple-box">
+
+* ロケットの速度を $v = 4.2 \times 10^7 \text{(m/s)}$ とする
+* 地球で1秒経過する間に、ロケットでは0.99秒経過する
+  * 地球から見て、**ロケットは0.01秒だけ時計が遅く進む**
+
+</div>
+
+$$
+\Delta t = \gamma / t' = \sqrt{1 - (4.2 \times 10^7)^2/(3.0 \times 10^8)^2} \simeq 0.99 \text{(s)}
+$$
 
 ---
 
-### 特殊相対論効果の影響
+### 特殊相対論効果のよる時間の遅れ
 
-* 静止人工衛星の速度
-  * 静止衛星の高度は約36000km
-  * 静止衛星の速度は約3.9km/s
-* 特殊相対論効果による時間の遅れ
-  * 静止衛星の時間は地上の時間より約7.2μs/日遅れる
+<div class="simple-box">
+
+* GPS衛星の速度
+  * GPS衛星の高度は約20,000km
+  * GPS衛星の速度は約3.9km/s
+  * 簡単のため衛星は局所的に等速直線運動をしていると考える
+</div>
+
+$$
+\Delta t_{\mathrm{sec}} = \gamma / t' \simeq 1 - 8.5 \times 10^{-11}
+$$
+
+<div class="highlight-box">
+
+* 地上で1秒時計が進む時、人工衛星の時計は地上の時計より約$8.5 \times 10^{-11}$秒遅れて進む
+
+</div>
+
+---
+
+### 1日あたりに生じる時間差
+
+<div class="simple-box">
+
+* 1日は$24 \text{(h)} \times 60 \text{(min)} \times 60 \text{(s)} = 86400 \text{(s)}$
+  * 1日あたりのGPS衛星の時計の遅れは:
+
+</div>
+
+$$
+\Delta t_{\mathrm{day}} = 86400 \text{(s)} \times 8.5 \times 10^{-11} \simeq 7.3 \mathrm{(\mu s)}
+$$
+
+<div class="highlight-box">
+
+* $ c \Delta t_{\mathrm{day}} \simeq 2.2 \text{(km)}$なので**距離測定で無視できない時間差が生じる！**
+* GPSによる測位はこの時間差を補正する必要がある！
+
+</div>
 
 ---
 
@@ -192,175 +364,265 @@ $$ \gamma = \frac{1}{\sqrt{1-v^2/c^2}} $$
 
 ---
 
-### 一般相対論とは？
+### 一般相対論の主張
 
-* 重力と時空の物理学
+<div class="simple-box">
 
----
+* 質量は時空の歪みを作る
+* この時空の歪みが重力である
+* 時間は重力によって遅くなる
 
-### 重力とは？
-
-* ニュートン力学
-  * 重力は物体間の引力
-  * 重力は物体の質量に比例する
-  * 重力は物体間の距離に反比例する
-* 一般相対論
-  * 重力は時空の歪み
-  * 質量を持つ物質によって時空が曲がる
-  * この時空の曲がりを我々は重力として観測する
-  * 時空の曲がりはEinstein方程式で記述される
+</div>
 
 ---
 
-### Einstein方程式
+### 重力がどのように時計の進みに影響するのか？
 
-$$ R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu} $$
+<div class="simple-box">
 
-* 左辺は時空の曲がり
-* 右辺は物質の分布
-* 一般的には解析的に解けない
+* 重力が強いほど時間の進みは遅くなる
+* 重力が弱いほど時間の進みは速くなる
 
+</div>
 
----
+</br>
 
-## <span style="text-transform: none;">Schwarzschild解</span>
+<div class="highlight-box">
 
-* 最も簡単かつ有名なEinstein方程式の解
+* 地表面は地球の中心に近く重力が強いので、時計は遅くなる
+* 人工衛星は地表面から高度20,000kmを周回しているため重力が弱い。そのため時計は速くなる
 
-$$ ds^2 = -\left(1-\frac{2GM}{c^2r}\right)c^2dt^2 + \left(1-\frac{2GM}{c^2r}\right)^{-1}dr^2 + r^2(d\theta^2 + \sin^2\theta d\phi^2) $$
-
-ここで:
-- $G$: 万有引力定数
-- $M$: 中心天体の質量
-- $c$: 光速
-- $r$: 中心からの距離
-- $t$: 時間座標
-- $\theta, \phi$: 角度座標
+</div>
 
 ---
 
-### Schwarzschild解の特徴
+### シュバルツシルト計量
 
-* 球対称かつ静的な時空
-* 物質は角運動量を持たない (自転しない)
-* 物質は電荷を持たない
+<div class="simple-box">
 
----
+* 時空の歪み(重力)を表す最もシンプルな計量
+  * $G$は重力定数
+  * $M$は天体の質量
+  * $r$は天体の中心からの距離
+* **地球の重力はシュバルツシルト計量で近似できる**
 
-### 地球の重力場
+</div>
 
-* 地球の重力場はSchwarzschild解で近似できる
-* 地球はほぼ球対称 (実際は楕円体)
-* 地球の自転は光速に比べて非常に遅い
-* 地球は電気的にほぼ中性 (天体外に電場を張らない)
+$$
+ds^2 = -\left(1-\frac{2GM}{c^2r}\right)c^2dt^2 + \left(1-\frac{2GM}{c^2r}\right)^{-1}dr^2
+$$
 
----
-
-### Schwarzschild解の弱重力場近似
-
-* 弱重力場ではSchwarzschild解はニュートン力学に一致する
-* 弱重力場では重力は遠方ではNewton力学で記述できる
-* 地球の重力場は弱いので、Schwarzschild解の弱重力場近似を使う
-
-$$ \frac{1}{2} \left( \frac{dr}{dt} \right)^2 = \frac{2GM}{r} - \frac{2GM}{r_s} $$
-
-ここで:
-- $G$: 万有引力定数
-- $M$: 中心天体の質量
-- $r$: 中心からの距離
-- $t$: 時間座標
-- $r_s$: 中心天体のSchwarzschild半径
+$$
+\ + \quad r^2(d\theta^2 + \sin^2\theta d\phi^2)
+$$
 
 ---
 
-### 弱重力場のSchwarzschild計量の空間成分
+### 地球の重力はなぜシュバルツシルト計量で近似できるのか？
 
-$$ ds^2 = \left(1-\frac{2GM}{c^2r}\right)^{-1}dr^2 \simeq \left(1+\frac{GM}{c^2r}\right)dr^2 $$
+<div class="simple-box">
 
----
+* シュバルツシルト計量の前提
+  * 天体は球対称かつ静止している
+  * 天体は自転しない
+  * 天体は電気的に中性
 
-### 重力赤方偏移
+</div>
 
-* 重力による時間の遅れは重力赤方偏移によって記述できる
+<br>
 
-$$ \frac{\lambda_o}{\lambda_e} = \sqrt{\frac{1-\frac{GM}{c^2r_e}}{1-\frac{GM}{c^2r_o}}} $$
+<div class="highlight-box">
 
-ここで:
-- $\lambda_o$: 観測者での波長
-- $\lambda_e$: 光源での波長
-- $G$: 万有引力定数
-- $M$: 中心天体の質量
-- $c$: 光速
+* 今日の地球はこれらを満たしている！
+  * 実際の地球もこれで近似していいほどの影響しかありません
 
----
-
-### 重力赤方偏移と時間の進み
-
-* 重力赤方偏移によって光の波長が変化する
-* しかし光速度は不変
-* つまり、光の波長が変化するということは、時間の遅れが生じるということ！
+</div>
 
 ---
 
-### 重力赤方偏移による時間の進み
+### シュバルツシルト計量のさらなる近似
 
-* 地球の半径をr_e, 人工衛星の高度をhとする
-* 地球の中心から人工衛星までの距離はr_e + h
-* 地球の中心から地表までの距離はr_e
-* 重力赤方偏移による時間のズレは
+<div class="simple-box">
 
-$$ \frac{\Delta t}{t} = \frac{\lambda_o}{\lambda_e} - 1 = \sqrt{\frac{1-\frac{GM}{c^2 r_e}}{1-\frac{GM}{c^2(r_e+h)}}} - 1 $$
+* GPSで測位を行うスマートフォンの速度は光速と比べて非常に遅く、ほぼ静止していると考えてOK！
+  * **シュバルツシルト計量の空間成分を無視できる！**
 
-* 地表面に比べて衛星軌道上は重力が弱いので、人工衛星の時間は地表面よりも早く進む
+</div>
 
----
+$$
+ds^2 = -\left(1-\frac{2GM}{c^2r}\right)c^2dt^2 
+$$
 
-### 重力赤方偏移でどの程度時間が進む？
+<div class="highlight-box">
 
-* 静止衛星の高度は約36000km
-* 地球の半径は約6378km
-* 重力赤方偏移による時間のズレは
+* 時間の伸び縮みは重力によってのみ生じる！
 
-$$ \frac{\Delta t}{t} = \frac{\lambda_o}{\lambda_e} - 1 = \sqrt{\frac{1-\frac{GM}{c^2r_e}}{1-\frac{GM}{c^2r_o}}} - 1 \simeq 25.5 \mu \text{s/day} $$
-
-* 重力赤方偏移による時間のズレは約25.5μs/日
+</div>
 
 ---
 
-### 静止衛星と地上の時間のずれ
+### 地球の重力による時間の伸び縮み
 
-* 特殊相対論効果によって静止衛星の時間は地上の時間より約7.2μs/日遅れる
-* 一般相対論効果によって静止衛星の時間は地上の時間より約25.5μs/日進む
-* つまり、静止衛星の時間は地上の時間より約18.3μs/日進む
+$$
+d\tau = - \frac{ds^2}{c^2} = \sqrt{1-\frac{2GM}{c^2r}} dt \simeq \left(1 - \frac{GM}{c^2r} \right) dt
+$$
 
----
+<div class="simple-box">
 
-### もし補正をしないとどうなる？
+* ここで$r$は地球の中心からの距離
+* 地球の中心で1秒経過する間に、半径$r$の地点では右辺の分だけ時計が早く進む
+  * 重力が強い場所では時計が遅くなるから
 
-* 静止衛星の時間は地上の時間より約18.3μs/日進む
-* 光速は3x10^8 m/s
-
-$$ \Delta d = c \Delta t = 3 \times 10^8 \times 18.3 \times 10^{-6} \simeq 7650 \text{m} $$
-
-* つまり、1日で7.65kmずれる！
+</div>
 
 ---
 
-### 実際の運用
+### 地球表面と人工衛星の時間差
 
-* 各衛星の高度や軌道傾斜角に応じて、時間の進み方が異なる
-* そのため、GPS衛星の軌道に応じた時間の補正が必要
-* 正確な時間補正を行い、正確な測位を行う
+<div class="highlight-box">
+
+* 地球の半径を$R$とする
+* GPS衛星の高度を$h$とする
+  * GPS衛星の地球中心からの距離は$R + h$
+
+</div>
+
+* 地球表面の時計とGPS衛星の時計の時間差は:
+
+$$
+\Delta t = \left(1 - \frac{GM}{c^2(R+h)}\right) - \left(1 - \frac{GM}{c^2R}\right)
+$$
+
+$$
+= \frac{GM}{c^2}\left(\frac{1}{R} - \frac{1}{R+h} \right)
+$$
+
+---
+
+### 時間差の計算に用いる値
+
+<div class="simple-box">
+
+* 以下の値を代入して計算
+  * $G = 6.674 \times 10^{-11} \mathrm{(m^3 kg^{-1} s^{-2})}$
+  * $M = 5.972 \times 10^{24} \text{(kg)}$
+  * $R = 6.378 \times 10^6 \text{(m)}$
+  * $h =  2.0 \times 10^7 \text{(m)}$
+  * $c = 3.0 \times 10^8 \text{(m/s)}$
+
+</div>
+
+---
+
+### 時間差の計算結果
+
+<div class="highlight-box">
+
+* 1日あたりにGPS衛星の時計が地上の時計と比べて進む時間差は: 
+
+$$
+\Delta t_{\mathrm{day}} \simeq 45.5 \mathrm{(\mu s)}
+$$
+
+</div>
+
+<br>
+
+<div class="highlight-box">
+
+* 1日あたり$45.5 \mathrm{\mu s}$、GPS衛星の時計は地球の時計より早く進む
+* 特殊相対論効果による時間の遅れよりも大きい！
+
+</div>
+
+---
+
+### トータルで生じる時間差
+
+<div class="simple-box">
+
+* 特殊相対論効果による時間差は$-7.3 \mathrm{\mu s}$ (遅れ)
+* 一般相対論効果による時間差は$+45.5 \mathrm{\mu s}$ (進み)
+
+</div>
+
+<br>
+
+<div class="highlight-box">
+
+* 両者を足して：
+
+$$
+\Delta t_{\mathrm{total}} = 45.5 - 7.3 = +38.2 \mathrm{\mu s}
+$$
+
+* **1日あたり、GPS衛星は地上と比べて$38.2 \mathrm{\mu s}$だけ時計が早く進む！**
+
+</div>
+
+---
+
+### どのように補正しているか？
+
+<div class="simple-box">
+
+* **1日あたり38.2$\mathrm{\mu s}$だけわざと遅れる時計を載せて打ち上げる！**
+  * 結果的に帳尻が合う
+
+</div>
+
+<br>
+
+<div class="highlight-box">
+
+* 理論の計算はエレガント
+* **しかし解決策は驚くほどシンプル！**
+* GNSSはエレガントさとシンプルさの合わせ技！
+
+</div>
 
 ---
 
 ### まとめ
 
-* GPSなどのGNSSの正確な測位には、特殊相対論と一般相対論の補正が必要
-* 衛星は高速で運動しているため、特殊相対論による時間の遅れの補正が必要
-* 地上と比べて衛星軌道の重力場は弱いため、一般相対論による時間の進みの補正が必要
-* これらの補正を行うことで、GPSなどのGNSSの正確な測位が可能になる
+<div class="simple-box">
 
+* GPSは人工衛星からスマートフォンなどの測定器に光が届く時間を測定することで位置を特定する
+  * 1基の時は球の表面、2基の時は円周、3基の時は2点、4基の時は1点と、衛星の数が増えるほど位置を絞り込める
+* 正確な測位には正確な時間の補正が必要
+  * 特殊相対論効果による時間の遅れ
+  * 一般相対論効果による時間の進み
+* **相対論はわたしたちの生活の身近にある！**
+
+</div>
+
+---
+
+### LT登壇者の募集
+
+<div class="simple-box">
+
+* 物理学集会ではLT登壇者を募集しています！
+  * どんなジャンルでもOK！
+  * 応募がないとまた主催がLTを準備することになるので助けてください...
+* 興味のある方は物理学集会のDiscordサーバーまで！
+
+</div>
+
+<img src="assets/images/qrcode.png" width="200px">
+
+---
+
+### 告知
+
+<div class="simple-box">
+
+* 次回開催は5月3日を予定しています
+* YouTubeの物理の動画をみんなでみようかなと思ってます
+* 「この動画をみんなで見たい！」という提案も大歓迎です！
+
+</div>
+					</textarea>
 				</section>
 			</div>
 		</div>
@@ -375,7 +637,8 @@ $$ \Delta d = c \Delta t = 3 \times 10^8 \times 18.3 \times 10^{-6} \simeq 7650 
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-				// KaTeXプラグインを追加
+
+				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
 			});
 		</script>
