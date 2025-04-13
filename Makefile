@@ -1,3 +1,3 @@
 # edit this Makefile as necessary for your project
-install:
-	echo "installed (test message)"
+slides:
+	decktape --size 1920x1080 index.html slides.pdf

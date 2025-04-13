@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f0f8ff" opacity="0.3"/>
+  
+  <!-- 人工衛星 -->
+  <g transform="translate(300, 200)">
+    <!-- 衛星本体 -->
+    <rect x="-15" y="-30" width="30" height="60" fill="#C0C0C0" stroke="#333" stroke-width="2" rx="5" ry="5"/>
+    <!-- ソーラーパネル上 -->
+    <rect x="-10" y="-87" width="20" height="50" fill="#4169E1" stroke="#333" stroke-width="2"/>
+    <!-- ソーラーパネル下 -->
+    <rect x="-10" y="38" width="20" height="50" fill="#4169E1" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- スマートフォン位置 Q -->
+  <g transform="translate(600, 200)">
+    <rect x="-10" y="-20" width="20" height="35" rx="3" ry="3" fill="#333" stroke="#000" stroke-width="1"/>
+    <rect x="-7" y="-17" width="14" height="25" rx="1" ry="1" fill="#fff"/>
+    <circle cx="0" cy="13" r="2" fill="#333"/>
+  </g>
+  <circle cx="600" cy="200" r="5" fill="blue"/>
+
+  <!-- 人工衛星の位置 P1 -->
+  <circle cx="300" cy="200" r="5" fill="red"/>
+  <text x="250" y="195" font-family="Arial" font-size="24" fill="#333">P₁</text>
+  
+  <!-- 人工衛星の位置 Q -->
+  <circle cx="300" cy="200" r="5" fill="blue"/>
+  <text x="615" y="195" font-family="Arial" font-size="24" fill="#333">Q</text>
+
+  <!-- 信号の経路 -->
+  <path d="M 300 200 L 600 200" stroke="yellow" stroke-width="2" />
+  
+  <!-- 距離 R1 の表示 -->
+  <text x="400" y="180" font-family="Arial" font-size="24" fill="#333">R₁ = cΔt</text>
+  
+  <!-- 時間の表示 -->
+  <text x="200" y="230" font-family="Arial" font-size="24" fill="#333">時刻: t₀</text>
+  <text x="600" y="240" font-family="Arial" font-size="24" fill="#333">時刻: t₀+Δt</text>
+  
+</svg>

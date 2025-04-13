@@ -1,0 +1,39 @@
+<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1000" height="400" fill="#f0f8ff" opacity="0.3"/>
+
+  <!-- 人工衛星1の位置 P1 -->
+  <circle cx="100" cy="200" r="5" fill="red"/>
+  <text x="100" y="180" font-family="Arial" font-size="20" fill="#333">P₁</text>
+  
+  <!-- 人工衛星2の位置 P2 -->
+  <circle cx="400" cy="200" r="5" fill="red"/>
+  <text x="400" y="180" font-family="Arial" font-size="20" fill="#333">P₂</text>
+  
+  <!-- 半径 R1 の球面 S1 -->
+  <circle cx="100" cy="200" r="180" stroke="#FF6347" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <text x="170" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₁</text>
+  <text x="170" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₁)</text>
+  
+  <!-- 半径 R2 の球面 S2 -->
+  <circle cx="400" cy="200" r="160" stroke="#4682B4" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <text x="470" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₂</text>
+  <text x="470" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₂)</text>
+  
+  <!-- 断面-->
+  <line x1="262" y1="120" x2="262" y2="280" stroke="#000" stroke-width="2"/>
+  <text x="262" y="100" font-family="Arial" font-size="20" fill="#333">断面</text>
+
+  <!-- 円C-->
+  <circle cx="800" cy="200" r="80" fill="none" stroke="#000" stroke-width="2"/>
+  <text x="800" y="100" font-family="Arial" font-size="20" fill="#333">円C</text>
+
+  <!-- 断面と円を結ぶ線-->
+  <line x1="262" y1="120" x2="800" y2="120" stroke="gray" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <line x1="262" y1="280" x2="800" y2="280" stroke="gray" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+
+  <!-- 説明テキスト -->
+  <rect x="360" y="350" width="610" height="45" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <text x="370" y="380" font-family="Arial" font-size="24" fill="#333">2つの球S₁とS₂が交わるとき、その交差部分は円Cになる</text>
+
+</svg>

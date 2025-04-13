@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f0f8ff" opacity="0.3"/>
+  
+  <!-- 人工衛星1 -->
+  <g transform="translate(250, 200)">
+    <!-- 衛星本体 -->
+    <rect x="-30" y="-15" width="60" height="30" fill="#C0C0C0" stroke="#333" stroke-width="2" rx="5" ry="5"/>
+    <!-- ソーラーパネル左 -->
+    <rect x="-90" y="-10" width="50" height="20" fill="#4169E1" stroke="#333" stroke-width="2"/>
+    <!-- ソーラーパネル右 -->
+    <rect x="40" y="-10" width="50" height="20" fill="#4169E1" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- 人工衛星1の位置 P1 -->
+  <circle cx="250" cy="200" r="5" fill="red"/>
+  <text x="250" y="180" font-family="Arial" font-size="20" fill="#333">P₁</text>
+  
+  <!-- 人工衛星2 -->
+  <g transform="translate(550, 200)">
+    <!-- 衛星本体 -->
+    <rect x="-30" y="-15" width="60" height="30" fill="#C0C0C0" stroke="#333" stroke-width="2" rx="5" ry="5"/>
+    <!-- ソーラーパネル左 -->
+    <rect x="-90" y="-10" width="50" height="20" fill="#4169E1" stroke="#333" stroke-width="2"/>
+    <!-- ソーラーパネル右 -->
+    <rect x="40" y="-10" width="50" height="20" fill="#4169E1" stroke="#333" stroke-width="2"/>
+  </g>
+  
+  <!-- 人工衛星2の位置 P2 -->
+  <circle cx="550" cy="200" r="5" fill="red"/>
+  <text x="550" y="180" font-family="Arial" font-size="20" fill="#333">P₂</text>
+  
+  <!-- 半径 R1 の球面 S1 -->
+  <circle cx="250" cy="200" r="180" stroke="#FF6347" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <text x="220" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₁</text>
+  <text x="170" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₁)</text>
+  
+  <!-- 半径 R2 の球面 S2 -->
+  <circle cx="550" cy="200" r="160" stroke="#4682B4" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+  <text x="600" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₂</text>
+  <text x="600" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₂)</text>
+  
+  <!-- 凡例 -->
+  <rect x="540" y="320" width="240" height="60" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <line x1="550" y1="335" x2="590" y2="335" stroke="#FF6347" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="600" y="340" font-family="Arial" font-size="14" fill="#333">球面S₁ (衛星1から)</text>
+  <line x1="550" y1="360" x2="590" y2="360" stroke="#4682B4" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="600" y="365" font-family="Arial" font-size="14" fill="#333">球面S₂ (衛星2から)</text>
+</svg>
