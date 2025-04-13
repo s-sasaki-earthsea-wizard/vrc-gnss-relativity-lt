@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f0f8ff" opacity="0.3"/>
+  
+  <!-- 人工衛星 -->  
+  <!-- 衛星4 -->
+  <g transform="translate(500, 200)">
+    <rect x="-20" y="-10" width="40" height="20" fill="#C0C0C0" stroke="#333" stroke-width="1.5" rx="3" ry="3"/>
+    <rect x="-60" y="-7" width="35" height="14" fill="#4169E1" stroke="#333" stroke-width="1.5"/>
+    <rect x="25" y="-7" width="35" height="14" fill="#4169E1" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <!-- 衛星の位置表示 -->
+  <circle cx="500" cy="200" r="4" fill="red"/>
+  <text x="480" y="180" font-family="Arial" font-size="22" fill="#333">P₄</text>
+
+  <!--球面S₄-->
+  <circle cx="500" cy="200" r="180" stroke="#9932CC" stroke-width="2" stroke-dasharray="5,3" fill="none"/>
+  <text x="360" y="50" font-family="Arial" font-size="22" fill="#9932CC">S₄</text>
+
+  <!-- 点Q1 -->
+  <circle cx="320" cy="180" r="6" fill="blue"/>
+  <text x="290" y="170" font-family="Arial" font-size="22" fill="blue">Q₁</text>
+
+  <!-- 点Q2 -->
+  <circle cx="180" cy="250" r="6" fill="blue"/>
+  <text x="150" y="240" font-family="Arial" font-size="22" fill="blue">Q₂</text>
+  
+  <!-- 説明文 -->
+  <rect x="40" y="340" width="400" height="55" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <text x="50" y="360" font-family="Arial" font-size="18" fill="#333">2つの候補のうち、1つのみを通る！</text>
+  <text x="50" y="385" font-family="Arial" font-size="18" fill="#333">この例ではQ₁が正解！</text>
+</svg>

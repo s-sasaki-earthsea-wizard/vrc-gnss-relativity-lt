@@ -5,6 +5,12 @@
     max-width: 90%;
 }
 
+.caption {
+    font-size: 0.7em;
+    color: #666;
+    margin-top: -45px;
+}
+
 /* 2カラムレイアウトの調整 */
 .container {
     display: flex;

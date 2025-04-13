@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="400" fill="#f0f8ff" opacity="0.3"/>
+  
+  <!-- 人工衛星 -->  
+  <!-- 衛星3 -->
+  <g transform="translate(500, 200)">
+    <rect x="-20" y="-10" width="40" height="20" fill="#C0C0C0" stroke="#333" stroke-width="1.5" rx="3" ry="3"/>
+    <rect x="-60" y="-7" width="35" height="14" fill="#4169E1" stroke="#333" stroke-width="1.5"/>
+    <rect x="25" y="-7" width="35" height="14" fill="#4169E1" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <!-- 衛星の位置表示 -->
+  <circle cx="500" cy="200" r="4" fill="red"/>
+  <text x="480" y="180" font-family="Arial" font-size="22" fill="#333">P₃</text>
+
+  <!--球面S₃-->
+  <circle cx="500" cy="200" r="180" stroke="#9932CC" stroke-width="2" stroke-dasharray="5,3" fill="none"/>
+  <text x="360" y="50" font-family="Arial" font-size="22" fill="#9932CC">S₃</text>
+
+  <!-- 円Cの表現（楕円で表現して立体感を出す） -->
+  <ellipse cx="220" cy="200" rx="120" ry="40" stroke="#32CD32" stroke-width="3" fill="none"/>
+  <text x="200" y="150" font-family="Arial" font-size="18" fill="#32CD32">円C</text>
+  
+  <!-- 円Cと球S3の交点 -->
+  <circle cx="320" cy="180" r="6" fill="blue"/>
+  <text x="300" y="160" font-family="Arial" font-size="22" fill="blue">Q₁</text>
+  
+  <circle cx="320" cy="220" r="6" fill="blue"/>
+  <text x="300" y="250" font-family="Arial" font-size="22" fill="blue">Q₂</text>
+  
+  <!-- 説明文 -->
+  <rect x="40" y="360" width="400" height="30" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
+  <text x="50" y="380" font-family="Arial" font-size="18" fill="#333">スマートフォンは点Q₁かQ₂のどちらかにある！</text>
+
+</svg>

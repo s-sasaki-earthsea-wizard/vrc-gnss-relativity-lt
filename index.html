@@ -104,6 +104,20 @@
 
 ---
 
+### 技術的な用語の補足
+
+<div class="simple-box">
+
+* GNSS (Global Navigation Satellite System)が人工衛星による測位システムの総称
+  * 🇺🇸GPS (Global Positioning System)はGNSSの一つ
+  * 🇷🇺GLONASS, 🇪🇺Galileo, 🇨🇳BeiDou, 🇯🇵みちびきなどがある
+* 今日は日本人にとって最も身近なGPSと称します
+  * 本当はゲーム機を全部「ファミコン」と呼ぶお母さんのような感じなのですが...
+
+</div>
+
+---
+
 ## 幾何光学による位置測定
 
 ---
@@ -207,6 +221,7 @@ $$
 </div>
 
 <img src="assets/images/two-sphere-cross-section.svg" width="800px">
+
 ---
 
 ### 3つの人工衛星による測位
@@ -214,11 +229,13 @@ $$
 <div class="simple-box">
 
 * 3つ目の衛星から球$S_3$を得る
-* 衛星が2つの時、円$C$の円周上のどこかにいることがわかった
-* 円$C$と球$S_3$の交点は2点
+* 円$C$の円周上のどこかにいることがわかっている
+* 円$C$と球$S_3$の交点は2点 ($Q_1, Q_2$)
 * **つまり、2つの点のどちらかにまで絞られる！**
 
 </div>
+
+<img src="assets/images/three-stallite-positioning.svg" width="680px">
 
 ---
 
@@ -227,9 +244,24 @@ $$
 <div class="simple-box">
 
 * 4つ目の衛星から球$S_4$を得る
-* 2つの候補のうち、1つのみを通る
-* **1つの点にまで絞られる！**
-* **4つの人工衛星から距離測定をして、スマートフォンの位置$Q$を特定できる！**
+  * 球$_4$は2つの候補のうち、**1つのみを通る**
+* **4つの人工衛星からの距離測定により、スマートフォンの位置$Q$を特定できる！**
+
+</div>
+
+<img src="assets/images/four-stallite-positioning.svg" width="680px">
+
+---
+
+### 衛星測位システムのまとめと補足
+
+<div class="simple-box">
+
+* 1つのGPS衛星からの信号を受信すると、球の表面のどこかにいることがわかる
+* 4つの衛星からの信号を受信することで、位置を特定できる
+  * 実用的には地球表面をもうひとつの球として扱い、3つの衛星から測位を行うことが多いです
+  * 航空機などでは4つ目の衛星の測位が重要！
+* **球と球の共通部分から、スマートフォンの位置を特定できる！**
 
 </div>
 
@@ -248,7 +280,7 @@ $$
 <div class="simple-box">
 
 * 高速で運動する物体は静止している観測者から見て、時間の進みがゆっくりになる
-  * 説明の簡単化のためものすごく簡略化しています
+  * ものすごく簡略化した説明であることに注意！
 
 </div>
 
@@ -269,9 +301,11 @@ $$
 <div class="simple-box">
 
 * 地球に対して速度$v$で等速直線運動するロケットを考える
-* 地球から見た時、ロケットの時計は地球の時計よりゆっくり進む
+* **地球から見た時**、ロケットの時計は地球の時計よりゆっくり進む！
 
 </div>
+
+<img src="assets/images/SR-explanation.svg" width="700px">
 
 ---
 
@@ -363,6 +397,29 @@ $$
 * 質量は時空の歪みを作る
 * この時空の歪みが重力である
 * 時間は重力によって遅くなる
+
+</div>
+
+<div class="container">
+
+<div class="col-left">
+
+<img src="assets/images/Spacetime_lattice_analogy.svg" width="500px">
+
+<div class="caption">
+
+Mysid, Wikipedia Commons (CC BY-SA 3.0).
+
+</div>
+
+</div>
+
+<div class="col-right">
+
+<img src="assets/images/Riemann.png" width="700px">
+
+
+</div>
 
 </div>
 
@@ -554,12 +611,28 @@ $$
 
 ---
 
+### 時計の差を放置するとどうなる？
+
+<div class="simple-box">
+
+* 1日あたり$38.2 \mathrm{\mu s}$だけ時計が早く進む
+* 距離に直すと$c \times 38.2 \mathrm{\mu s} \simeq 11.5 \text{(km)}$
+* 35日間で約400km (東京-大阪間の距離)もずれる！
+* **カーナビで東京に行こうと思ったら大阪に連れて行かれる！**
+
+</div>
+
+<img src="assets/images/misguide-to-Osaka.png" width="500px">
+
+---
+
 ### どのように補正しているか？
 
 <div class="simple-box">
 
-* **1日あたり38.2$\mathrm{\mu s}$だけわざと遅れる時計を載せて打ち上げる！**
+* (この例では)**1日あたり38.2$\mathrm{\mu s}$だけわざと遅れる時計を載せて打ち上げる！**
   * 結果的に帳尻が合う
+  * 厳密にはクロック周波数が異なる時計を載せて実現している
 
 </div>
 
@@ -590,6 +663,32 @@ $$
 
 ---
 
+### 参考文献
+
+* International Committee on Global Navigation Satellite Systems, [GNSS, How it Works and Applications](https://www.unoosa.org/pdf/icg/2015/presentations/31.pdf)
+  * GNSSの基本原理、特になぜ衛星の数を増やすことで位置を絞り込めるのかについて詳しく解説されています
+  * イラスト付きの解説が多く、わかりやすいです
+
+---
+
+### 参考文献
+* Neil Ashby, [Relativity in the Global Positioning System](file:///Users/earthsea-wizard-archipelago/Desktop/lrr-2003-1.pdf), DOI: 10.12942/lrr-2003-1
+  * 相対論効果によるGNSSの時計の補正方法はこのサーベイ論文を主に参考にしました
+  * ジオイド補正などさらに進んだ話題も詳しく解説されています
+
+---
+
+### 参考文献
+
+* 内山龍雄，[相対性理論](https://www.iwanami.co.jp/book/b260769.html)，岩波書店 (1989)
+  * 相対論の基本的な考え方はこちらの教科書を参考にしました
+  * 特殊相対論から一般相対論まで、一通りの基礎的知識がコンパクトにまとまっています
+  * 過激な巻頭言で有名
+    * 「もし本書を読んでも、これが理解出来ないようなら、もはや相対性理論を学ぶことはあきらめるべきであろう。」
+	* ...そんなことはないと思います
+
+---
+
 ### LT登壇者の募集
 
 <div class="simple-box">
@@ -610,7 +709,7 @@ $$
 <div class="simple-box">
 
 * 次回開催は5月3日を予定しています
-* YouTubeの物理の動画をみんなでみようかなと思ってます
+* YouTubeの物理の動画をみんなで見ようと思ってます
 * 「この動画をみんなで見たい！」という提案も大歓迎です！
 
 </div>
