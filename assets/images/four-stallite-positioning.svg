@@ -28,6 +28,6 @@
   
   <!-- 説明文 -->
   <rect x="40" y="340" width="400" height="55" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
-  <text x="50" y="360" font-family="Arial" font-size="18" fill="#333">2つの候補のうち、1つのみを通る！</text>
-  <text x="50" y="385" font-family="Arial" font-size="18" fill="#333">この例ではQ₁が正解！</text>
+  <text x="50" y="360" font-family="Arial" font-size="18" fill="#333">Only one of the two candidates passes!</text>
+  <text x="50" y="385" font-family="Arial" font-size="18" fill="#333">In this example, Q₁ is the correct answer!</text>
 </svg>

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>GPSで活躍する相対論！　〜人工衛星はどのようにスマートフォンの位置を測るのか？〜</title>
+		<title>🛰️Relativity in GPS</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -25,48 +25,21 @@
 				<section data-markdown data-separator="---">
 					<textarea data-template>
 
-## 🛰️GPSで活躍する相対論
-#### 〜人工衛星はどのように📱スマートフォンの位置を測るのか？〜
+## 🛰️Relativity in GPS
+#### How do satellites measure the location of smartphones?
 
 <img src="assets/images/title.png" width="700px">
 
 ---
 
-### 自己紹介
-
-<div class="profile-container">
-<div class="profile-left">
-
-* さめ(мег-сск)
-  * 🧑‍💻 フリーランスのソフトウェアエンジニア
-  * 🧑‍🎓 社会人学生として通信制大学在学中
-* 得意分野:
-	* 📸 コンピュータビジョン (画像認識/点群処理)
-	* 🌍 空間情報処理 (地理情報/リモートセンシング)
-	* ☁️ クラウドインフラ設計/IaC (AWS, GCP)
-* [GitHub](https://github.com/s-sasaki-earthsea-wizard)
-* [YouTube](https://www.youtube.com/@SyotaSasaki-EW)
-* [Speaker Deck](https://speakerdeck.com/syotasasaki593876)
-
-</div>
-
-<div class="profile-right">
-
-<img src="assets/images/avatar.png" alt="avatar" height="350px" width="350px">
-
-</div>
-</div>
-
----
-
-### 今日話すこと
+### Today's Topic
 
 <div class="simple-box">
 
-* 🛰️GPSなどのGNSSはどうやって位置を測定しているのか？
-  * 相対論効果を考慮しないケース (幾何光学)
-  * 特殊相対論効果の影響
-  * 一般相対論効果の影響
+* 🛰️How does GNSS like GPS measure position?
+  * Case without considering relativistic effects (Geometric Optics)
+  * Effects of Special Relativity
+  * Effects of General Relativity
 
 </div>
 
@@ -74,22 +47,22 @@
 
 <div class="highlight-box">
 
-* 📱スマートフォンが🗾地図アプリなどであなたの位置を教えてくれる時、何が起きているのかわかります！
+* 📱You'll understand what's happening when your smartphone shows your location on 🗾map apps!
 
 </div>
 
 ---
 
-### 前提とする仮定
+### Assumptions
 
 <div class="simple-box">
 
-* 地球は球
-* 地球は自転しない
-* 地球は電気的に中性
-* 地球の質量分布は均一
-* 地球に大気は存在しない (真空である)
-* 地球以外の天体(月など)は存在しない
+* Earth is a sphere
+* Earth does not rotate
+* Earth is electrically neutral
+* Earth's mass distribution is uniform
+* Earth has no atmosphere (it's a vacuum)
+* No other celestial bodies (like the Moon) exist
 
 </div>
 
@@ -97,38 +70,38 @@
 
 <div class="highlight-box">
 
-* 実際の地球とかけ離れているけど、これで問題をシンプルにします！
-  * でも意外とこの近似でOKです
+* These assumptions are far from reality, but they simplify the problem!
+  * Surprisingly, this approximation works well
 
 </div>
 
 ---
 
-### 技術的な用語の補足
+### Technical Terms
 
 <div class="simple-box">
 
-* GNSS (Global Navigation Satellite System)が人工衛星による測位システムの総称
-  * 🇺🇸GPS (Global Positioning System)はGNSSの一つ
-  * 🇷🇺GLONASS, 🇪🇺Galileo, 🇨🇳BeiDou, 🇯🇵みちびきなどがある
-* 今日は日本人にとって最も身近なGPSと称します
-  * 本当はゲーム機を全部「ファミコン」と呼ぶお母さんのような感じなのですが...
+* GNSS (Global Navigation Satellite System) is the general term for satellite-based positioning systems
+  * 🇺🇸GPS (Global Positioning System) is one type of GNSS
+  * Others include 🇷🇺GLONASS, 🇪🇺Galileo, 🇨🇳BeiDou, 🇯🇵Michibiki
+* Today, we'll refer to it as GPS, which is most familiar to Japanese people
+  * It's like calling all game consoles "Famicom" - technically not correct, but commonly used
 
 </div>
 
 ---
 
-## 幾何光学による位置測定
+## Position Measurement Using Geometric Optics
 
 ---
 
-### 距離測定の簡単な例
+### Simple Example of Distance Measurement
 
 <div class="simple-box">
 
-- 時刻$t=0 \ (\mathrm{s})$に地点$A$から速度$v=10 \ (\mathrm{m/s})$で地点$B$に移動を始める
-- 時刻$t=10 \ (\mathrm{s})$に地点$B$に着いた
-- $AB$間の距離は?
+- Starting from point $A$ at time $t=0 \ (\mathrm{s})$ with velocity $v=10 \ (\mathrm{m/s})$ towards point $B$
+- Arriving at point $B$ at time $t=10 \ (\mathrm{s})$
+- What is the distance between $A$ and $B$?
 
 </div>
 
@@ -138,29 +111,30 @@ $$
 
 <div class="highlight-box">
 
-- **2点間の距離は速さ$\times$時間で計算できる！**
+- **Distance between two points can be calculated as speed $\times$ time!**
 
 </div>
 
 ---
 
-### 光による距離測定
+### Distance Measurement using Light
 
 <div class="simple-box">
 
-* 光の速さ: 
-  * $c = 3.0 \times 10^8 \text{(m/s)}$
-* 人工衛星が時刻$t_0$に地点$P$から電磁波を送信する
-* 時刻$t_0 + \Delta t$に地点$Q$でスマートフォンが電磁波を受信する
-* 地点$P$と地点$Q$の距離は?
+* Speed of light: $c = 3.0 \times 10^8 \text{(m/s)}$
+* Satellite transmits electromagnetic waves from point $P$ at time $t_0$
+* Smartphone receives the waves at point $Q$ at time $t_0 + \Delta t$
+* What is the distance between points $P$ and $Q$?
 
 </div>
 
-</br>
+---
+
+### Distance Measurement using Light
 
 <div class="highlight-box">
 
-* 基本は同じ： 距離 = 光の速さ $\times$ 時間
+* Same principle: distance = speed of light $\times$ time
 
 $$ 
 ||PQ|| = c \Delta t
@@ -170,25 +144,24 @@ $$
 
 ---
 
-### 1つの人工衛星による測位
+### Positioning with One Satellite
 
 <div class="simple-box">
 
-* 人工衛星1が電波を時刻$t_0$に地点$P_1$から送信する
-* $\Delta t$後に地点$Q$でスマートフォンが電波を受信する
-* 地点$P_1$と地点$Q$の距離は$R_1 = c \Delta t$
+* Satellite transmits radio waves from point $P_1$ at time $t_0$, smartphone receives it after $\Delta t$
+* Distance between points $P_1$ and $Q$ is $R_1 = c \Delta t$
 
 </div>
 
-<img src="assets/images/satellite-smartphone.svg" width="800px">
+<img src="assets/images/satellite-smartphone.svg" height="400px">
 
 ---
 
-### スマートフォンはどこにあるか？
+### Where is the Smartphone?
 
 <div class="highlight-box">
 
-* $P_1$を中心とする半径$R_1$の球面$S_1$の表面のどこかにいる！
+* It's somewhere on the surface of sphere $S_1$ with center $P_1$ and radius $R_1$!
 
 </div>
 
@@ -196,82 +169,88 @@ $$
 
 ---
 
-### 2つの人工衛星による測位
+### Positioning with Two Satellites
 
 <div class="simple-box">
 
-* 2つの人工衛星から同様に距離を測定したとする
-  * スマートフォンは球$S_1$の表面のどこかにいる
-  * かつ球$S_2$の表面のどこかにいる
+* Similarly measuring distance from two satellites
+  * Smartphone is somewhere on the surface of sphere $S_1$
+  * And also on the surface of sphere $S_2$
 
 </div>
 
-<img src="assets/images/two-satellite-positioning.svg" width="800px">
+<img src="assets/images/two-satellite-positioning.svg" width="600px">
 
 ---
 
-### スマートフォンの位置を絞り込む
+### Narrowing Down the Smartphone's Position
 
 <div class="highlight-box">
 
-* 2つの球の共通部分は円
-* つまり円$C$の円周上のどこかにいる！
-* **衛星の数を増やしてさっきよりも絞り込めた！**
+* The intersection of two spheres is a circle
+* It's somewhere on the circumference of circle $C$!
+* **By increasing the number of satellites, we can narrow down the position!**
 
 </div>
 
-<img src="assets/images/two-sphere-cross-section.svg" width="800px">
+<img src="assets/images/two-sphere-cross-section.svg" width="600px">
 
 ---
 
-### 3つの人工衛星による測位
+### Positioning with Three Satellites
 
 <div class="simple-box">
 
-* 3つ目の衛星から球$S_3$を得る
-* 円$C$の円周上のどこかにいることがわかっている
-* 円$C$と球$S_3$の交点は2点 ($Q_1, Q_2$)
-* **つまり、2つの点のどちらかにまで絞られる！**
+* Getting sphere $S_3$ from the third satellite
+* We know it's somewhere on the circumference of circle $C$, which intersects at two points
+* **Now we're down to two possible points!**
 
 </div>
 
-<img src="assets/images/three-stallite-positioning.svg" width="680px">
+<img src="assets/images/three-stallite-positioning.svg" width="500px">
 
 ---
 
-### 4つの人工衛星による測位
+### Positioning with Four Satellites
 
 <div class="simple-box">
 
-* 4つ目の衛星から球$S_4$を得る
-  * 球$_4$は2つの候補のうち、**1つのみを通る**
-* **4つの人工衛星からの距離測定により、スマートフォンの位置$Q$を特定できる！**
+* Getting sphere $S_4$ from the fourth satellite
+* **With distance measurements from four satellites, we can determine the smartphone's position $Q$!**
 
 </div>
 
-<img src="assets/images/four-stallite-positioning.svg" width="680px">
+<img src="assets/images/four-stallite-positioning.svg" width="500px">
 
 ---
 
-### 衛星測位システムのまとめと補足
+### Summary
 
 <div class="simple-box">
 
-* 1つのGPS衛星からの信号を受信すると、球の表面のどこかにいることがわかる
-* 4つの衛星からの信号を受信することで、位置を特定できる
-  * 実用的には地球表面をもうひとつの球として扱い、3つの衛星から測位を行うことが多いです
-  * 航空機などでは4つ目の衛星の測位が重要！
-* **球と球の共通部分から、スマートフォンの位置を特定できる！**
+* Receiving signals from one GPS satellite, we know the smartphone is on the surface of a sphere
+* Receiving signals from four satellites, we can determine the position
+* **We can determine the smartphone's position from the intersection of spheres!**
 
 </div>
 
 ---
 
-## 特殊相対論効果の影響
+### Additional Notes
+
+<div class="simple-box">
+* In practice, we treat the Earth's surface as another sphere, and perform positioning with three satellites
+* For aircraft, positioning from the fourth satellite is important!
+
+</div>
 
 ---
 
-### 特殊相対論の重要な主張
+## Effects of Special Relativity
+
+---
+
+### Important Claim of Special Relativity
 
 <div class="container">
 
@@ -279,8 +258,8 @@ $$
 
 <div class="simple-box">
 
-* 高速で運動する物体は静止している観測者から見て、時間の進みがゆっくりになる
-  * ものすごく簡略化した説明であることに注意！
+* Objects moving at high speeds appear to time slower to observers at rest
+  * This is a highly simplified explanation!
 
 </div>
 
@@ -296,12 +275,12 @@ $$
 
 ---
 
-### 特殊相対論の主張の具体例
+### Example of Special Relativity
 
 <div class="simple-box">
 
-* 地球に対して速度$v$で等速直線運動するロケットを考える
-* **地球から見た時**、ロケットの時計は地球の時計よりゆっくり進む！
+* Consider a rocket moving at speed $v$ relative to Earth
+* **From Earth's perspective**, the rocket clock appears to run slower!
 
 </div>
 
@@ -309,14 +288,14 @@ $$
 
 ---
 
-### ローレンツ因子
+### Lorentz Factor
 
 </br>
 
 <div class="highlight-box">
 
-* ロケットの時計が$t'$秒進んだ時、地球の時計は$t$秒経過している
-  * この$\gamma$はローレンツ因子と呼ばれる
+* When the rocket clock has advanced $t'$ seconds, the Earth clock has advanced $t$ seconds
+  * This $\gamma$ is called the Lorentz factor
 
 $$
 t' = \frac{t}{\sqrt{1 - v^2/c^2}} = \gamma t
@@ -326,13 +305,13 @@ $$
 
 ---
 
-### 時計の遅れの簡単な例
+### Simple Example of Time Dilation
 
 <div class="simple-box">
 
-* ロケットの速度を $v = 4.2 \times 10^7 \text{(m/s)}$ とする
-* 地球で1秒経過する間に、ロケットでは0.99秒経過する
-  * 地球から見て、**ロケットは0.01秒だけ時計が遅く進む**
+* Let's consider a rocket with speed $v = 4.2 \times 10^7 \text{(m/s)}$
+* The Earth clock advances by 1 second while the rocket clock advances by 0.99 seconds
+  * From Earth's perspective, **the rocket clock is 0.01 seconds ahead**
 
 </div>
 
@@ -342,14 +321,13 @@ $$
 
 ---
 
-### 特殊相対論効果のよる時間の遅れ
+### Effects of Special Relativity on Time
 
 <div class="simple-box">
 
-* GPS衛星の速度
-  * GPS衛星の高度は約20,000km
-  * GPS衛星の速度は約3.9km/s
-  * 簡単のため衛星は局所的に等速直線運動をしていると考える
+* Speed of GPS satellite
+  * Height of GPS satellite is about 20,000 km
+  * Speed of GPS satellite is about 3.9 km/s
 </div>
 
 $$
@@ -358,18 +336,18 @@ $$
 
 <div class="highlight-box">
 
-* 地上で1秒時計が進む時、人工衛星の時計は地上の時計より約$8.5 \times 10^{-11}$秒遅れて進む
+* The Earth clock advances by 1 second while the GPS satellite clock is $8.5 \times 10^{-11}$ seconds ahead
 
 </div>
 
 ---
 
-### 1日あたりに生じる時間差
+### Daily Time Difference
 
 <div class="simple-box">
 
-* 1日は$24 \text{(h)} \times 60 \text{(min)} \times 60 \text{(s)} = 86400 \text{(s)}$
-  * 1日あたりのGPS衛星の時計の遅れは:
+* 1 day is $24 \text{(h)} \times 60 \text{(min)} \times 60 \text{(s)} = 86400 \text{(s)}$
+  * Daily GPS satellite clock delay:
 
 </div>
 
@@ -379,24 +357,24 @@ $$
 
 <div class="highlight-box">
 
-* $ c \Delta t_{\mathrm{day}} \simeq 2.2 \text{(km)}$なので**距離測定で無視できない時間差が生じる！**
-* GPSによる測位はこの時間差を補正する必要がある！
+* $ c \Delta t_{\mathrm{day}} \simeq 2.2 \text{(km)}$ so **a significant time difference occurs in distance measurement!**
+* GPS positioning requires correction for this time difference!
 
 </div>
 
 ---
 
-## 一般相対論効果の影響
+## Effects of General Relativity
 
 ---
 
-### 一般相対論の主張
+### Claim of General Relativity
 
 <div class="simple-box">
 
-* 質量は時空の歪みを作る
-* この時空の歪みが重力である
-* 時間は重力によって遅くなる
+* Mass creates spacetime distortion
+* This distortion is gravity
+* Time passes slower in gravity
 
 </div>
 
@@ -425,12 +403,12 @@ Mysid, Wikipedia Commons (CC BY-SA 3.0).
 
 ---
 
-### 重力がどのように時計の進みに影響するのか？
+### How Gravity Affects Time
 
 <div class="simple-box">
 
-* 重力が強いほど時間の進みは遅くなる
-* 重力が弱いほど時間の進みは速くなる
+* Stronger gravity makes time pass slower
+* Weaker gravity makes time pass faster
 
 </div>
 
@@ -438,22 +416,22 @@ Mysid, Wikipedia Commons (CC BY-SA 3.0).
 
 <div class="highlight-box">
 
-* 地表面は地球の中心に近く重力が強いので、時計は遅くなる
-* 人工衛星は地表面から高度20,000kmを周回しているため重力が弱い。そのため時計は速くなる
+* Earth's surface is closer to Earth's center, so gravity is stronger, making the clock slower
+* GPS satellite is at an altitude of 20,000 km, so gravity is weaker, making the clock faster
 
 </div>
 
 ---
 
-### シュバルツシルト計量
+### Schwarzschild Metric
 
 <div class="simple-box">
 
-* 時空の歪み(重力)を表す最もシンプルな計量
-  * $G$は重力定数
-  * $M$は天体の質量
-  * $r$は天体の中心からの距離
-* **地球の重力はシュバルツシルト計量で近似できる**
+* The simplest metric to represent spacetime distortion (gravity)
+  * $G$ is the gravitational constant
+  * $M$ is the mass of the body
+  * $r$ is the distance from the body's center
+* **Earth's gravity can be approximated by the Schwarzschild metric**
 
 </div>
 
@@ -467,14 +445,14 @@ $$
 
 ---
 
-### 地球の重力はなぜシュバルツシルト計量で近似できるのか？
+### Why is Earth's Gravity Approximated by the Schwarzschild Metric?
 
 <div class="simple-box">
 
-* シュバルツシルト計量の前提
-  * 天体は球対称かつ静止している
-  * 天体は自転しない
-  * 天体は電気的に中性
+* Assumptions of the Schwarzschild metric
+  * Body is spherically symmetric and stationary
+  * Body does not rotate
+  * Body is electrically neutral
 
 </div>
 
@@ -482,19 +460,19 @@ $$
 
 <div class="highlight-box">
 
-* 今日の地球はこれらを満たしている！
-  * 実際の地球もこれで近似していいほどの影響しかありません
+* Today's Earth satisfies these conditions!
+  * The actual Earth has a negligible effect due to this approximation
 
 </div>
 
 ---
 
-### シュバルツシルト計量のさらなる近似
+### Further Approximation of Schwarzschild Metric
 
 <div class="simple-box">
 
-* GPSで測位を行うスマートフォンの速度は光速と比べて非常に遅く、ほぼ静止していると考えてOK！
-  * **シュバルツシルト計量の空間成分を無視できる！**
+* The speed of the smartphone measuring position is very slow compared to the speed of light, so we can consider it almost stationary!
+  * **We can ignore the spatial components of the Schwarzschild metric!**
 
 </div>
 
@@ -504,13 +482,13 @@ $$
 
 <div class="highlight-box">
 
-* 時間の伸び縮みは重力によってのみ生じる！
+* Time dilation is only due to gravity!
 
 </div>
 
 ---
 
-### 地球の重力による時間の伸び縮み
+### Time Dilation Due to Earth's Gravity
 
 $$
 d\tau = - \frac{ds^2}{c^2} = \sqrt{1-\frac{2GM}{c^2r}} dt \simeq \left(1 - \frac{GM}{c^2r} \right) dt
@@ -518,25 +496,25 @@ $$
 
 <div class="simple-box">
 
-* ここで$r$は地球の中心からの距離
-* 地球の中心で1秒経過する間に、半径$r$の地点では右辺の分だけ時計が早く進む
-  * 重力が強い場所では時計が遅くなるから
+* Here $r$ is the distance from Earth's center
+* The Earth's center advances by 1 second while the point at distance $r$ advances by the right-hand side
+  * Faster in stronger gravity
 
 </div>
 
 ---
 
-### 地球表面と人工衛星の時間差
+### Time Difference Between Earth and Satellite
 
 <div class="highlight-box">
 
-* 地球の半径を$R$とする
-* GPS衛星の高度を$h$とする
-  * GPS衛星の地球中心からの距離は$R + h$
+* Let's denote the Earth's radius as $R$
+* Let's denote the altitude of the GPS satellite as $h$
+  * Distance from Earth's center of the GPS satellite is $R + h$
 
 </div>
 
-* 地球表面の時計とGPS衛星の時計の時間差は:
+* Time difference between the Earth clock and the GPS satellite clock:
 
 $$
 \Delta t = \left(1 - \frac{GM}{c^2(R+h)}\right) - \left(1 - \frac{GM}{c^2R}\right)
@@ -548,11 +526,11 @@ $$
 
 ---
 
-### 時間差の計算に用いる値
+### Values Used in Calculation
 
 <div class="simple-box">
 
-* 以下の値を代入して計算
+* Substitute the following values:
   * $G = 6.674 \times 10^{-11} \mathrm{(m^3 kg^{-1} s^{-2})}$
   * $M = 5.972 \times 10^{24} \text{(kg)}$
   * $R = 6.378 \times 10^6 \text{(m)}$
@@ -563,11 +541,11 @@ $$
 
 ---
 
-### 時間差の計算結果
+### Calculation Result
 
 <div class="highlight-box">
 
-* 1日あたりにGPS衛星の時計が地上の時計と比べて進む時間差は: 
+* Daily time difference between the GPS satellite clock and the Earth clock: 
 
 $$
 \Delta t_{\mathrm{day}} \simeq 45.5 \mathrm{(\mu s)}
@@ -579,19 +557,19 @@ $$
 
 <div class="highlight-box">
 
-* 1日あたり$45.5 \mathrm{\mu s}$、GPS衛星の時計は地球の時計より早く進む
-* 特殊相対論効果による時間の遅れよりも大きい！
+* 1 day, the GPS satellite clock is 45.5 $\mathrm{\mu s}$ ahead of the Earth clock
+* Larger than the time delay due to special relativity!
 
 </div>
 
 ---
 
-### トータルで生じる時間差
+### Total Time Difference
 
 <div class="simple-box">
 
-* 特殊相対論効果による時間差は$-7.3 \mathrm{\mu s}$ (遅れ)
-* 一般相対論効果による時間差は$+45.5 \mathrm{\mu s}$ (進み)
+* Time delay due to special relativity is $-7.3 \mathrm{\mu s}$ (delay)
+* Time advance due to general relativity is $+45.5 \mathrm{\mu s}$ (advance)
 
 </div>
 
@@ -599,40 +577,39 @@ $$
 
 <div class="highlight-box">
 
-* 両者を足して：
+* Adding both:
 
 $$
 \Delta t_{\mathrm{total}} = 45.5 - 7.3 = +38.2 \mathrm{\mu s}
 $$
 
-* **1日あたり、GPS衛星は地上と比べて$38.2 \mathrm{\mu s}$だけ時計が早く進む！**
+* **1 day, the GPS satellite is 38.2 $\mathrm{\mu s}$ ahead of the Earth clock!**
 
 </div>
 
 ---
 
-### 時計の差を放置するとどうなる？
+### What Happens?
 
 <div class="simple-box">
 
-* 1日あたり$38.2 \mathrm{\mu s}$だけ時計が早く進む
-* 距離に直すと$c \times 38.2 \mathrm{\mu s} \simeq 11.5 \text{(km)}$
-* 35日間で約400km (東京-大阪間の距離)もずれる！
-* **カーナビで東京に行こうと思ったら大阪に連れて行かれる！**
+* 1 day, the clock is 38.2 $\mathrm{\mu s}$ ahead
+* 35 days, the distance is about 400 km (Tokyo-Osaka distance)
+* **If you're heading to Tokyo from Tokyo, you'll end up in Osaka!**
 
 </div>
 
-<img src="assets/images/misguide-to-Osaka.png" width="500px">
+<img src="assets/images/misguide-to-Osaka.png" width="400px">
 
 ---
 
-### どのように補正しているか？
+### How Are We Correcting It?
 
 <div class="simple-box">
 
-* (この例では)**1日あたり38.2$\mathrm{\mu s}$だけわざと遅れる時計を載せて打ち上げる！**
-  * 結果的に帳尻が合う
-  * 厳密にはクロック周波数が異なる時計を載せて実現している
+* **1 day, we intentionally slow down the clock by 38.2 $\mathrm{\mu s}$!**
+  * Resulting in a balance
+  * Strictly, we use clocks with different clock frequencies
 
 </div>
 
@@ -640,63 +617,63 @@ $$
 
 <div class="highlight-box">
 
-* 理論の計算はエレガント
-* **しかし解決策は驚くほどシンプル！**
-* GNSSはエレガントさとシンプルさの合わせ技！
+* Theoretical calculation is elegant
+* **But the solution is surprisingly simple!**
+* GNSS is a combination of elegance and simplicity!
 
 </div>
 
 ---
 
-### まとめ
+### Summary
 
 <div class="simple-box">
 
-* GPSは人工衛星からスマートフォンなどの測定器に光が届く時間を測定することで位置を特定する
-  * 1基の時は球の表面、2基の時は円周、3基の時は2点、4基の時は1点と、衛星の数が増えるほど位置を絞り込める
-* 正確な測位には正確な時間の補正が必要
-  * 特殊相対論効果による時間の遅れ
-  * 一般相対論効果による時間の進み
-* **相対論はわたしたちの生活の身近にある！**
+* GPS measures the time it takes for light to reach from satellites to measuring devices
+  * 1 satellite: sphere surface, 2 satellites: circle circumference, 3 satellites: 2 points, 4 satellites: 1 point, and the more satellites, the more we can narrow down the position
+* Accurate positioning requires accurate time correction
+  * Time delay due to special relativity
+  * Time advance due to general relativity
+* **Relativity is everywhere in our lives!**
 
 </div>
 
 ---
 
-### 参考文献
+### References
 
 * International Committee on Global Navigation Satellite Systems, [GNSS, How it Works and Applications](https://www.unoosa.org/pdf/icg/2015/presentations/31.pdf)
-  * GNSSの基本原理、特になぜ衛星の数を増やすことで位置を絞り込めるのかについて詳しく解説されています
-  * イラスト付きの解説が多く、わかりやすいです
+  * Detailed explanation of why positioning becomes more accurate by increasing the number of satellites
+  * Many illustrations, easy to understand
 
 ---
 
-### 参考文献
+### References
 * Neil Ashby, [Relativity in the Global Positioning System](file:///Users/earthsea-wizard-archipelago/Desktop/lrr-2003-1.pdf), DOI: 10.12942/lrr-2003-1
-  * 相対論効果によるGNSSの時計の補正方法はこのサーベイ論文を主に参考にしました
-  * ジオイド補正などさらに進んだ話題も詳しく解説されています
+  * We mainly referred to this survey paper for the method of correcting GNSS clocks due to relativistic effects
+  * More advanced topics such as geoid correction are explained in detail
 
 ---
 
-### 参考文献
+### References
 
 * 内山龍雄，[相対性理論](https://www.iwanami.co.jp/book/b260769.html)，岩波書店 (1989)
-  * 相対論の基本的な考え方はこちらの教科書を参考にしました
-  * 特殊相対論から一般相対論まで、一通りの基礎的知識がコンパクトにまとまっています
-  * 過激な巻頭言で有名
-    * 「もし本書を読んでも、これが理解出来ないようなら、もはや相対性理論を学ぶことはあきらめるべきであろう。」
-	* ...そんなことはないと思います
+  * We referred to this textbook for the basic concepts of relativity
+  * Compact summary of basic knowledge from special relativity to general relativity
+  * Famous opening statement
+    * "If you can't understand this, you should probably give up on learning relativity."
+	* ...I don't think so
 
 ---
 
-### LT登壇者の募集
+### LT Speaker Recruitment
 
 <div class="simple-box">
 
-* 物理学集会ではLT登壇者を募集しています！
-  * どんなジャンルでもOK！
-  * 応募がないと主催がまたLTという名目のジャイアンリサイタルを開くことになります...
-* 興味のある方は物理学集会のDiscordサーバーまで！
+* We're recruiting LT speakers at the physics meeting!
+  * Any genre is OK!
+  * If there's no application, the organizer will hold a Jaiyan Ressairoku (LT event) under the guise of LT...
+* If you're interested, join the Discord server of the physics meeting!
 
 </div>
 
@@ -704,13 +681,13 @@ $$
 
 ---
 
-### 告知
+### Announcement
 
 <div class="simple-box">
 
-* 次回開催は5月3日を予定しています
-* YouTubeの物理の動画をみんなで見ようと思ってます
-* 「この動画をみんなで見たい！」という提案も大歓迎です！
+* Next meeting is scheduled for May 3
+* We're all going to watch the physics video together
+* We're also looking for proposals for "I want to watch this video with everyone!"
 
 </div>
 					</textarea>

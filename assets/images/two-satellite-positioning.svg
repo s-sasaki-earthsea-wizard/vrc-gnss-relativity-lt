@@ -32,18 +32,18 @@
   
   <!-- 半径 R1 の球面 S1 -->
   <circle cx="250" cy="200" r="180" stroke="#FF6347" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
-  <text x="220" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₁</text>
-  <text x="170" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₁)</text>
+  <text x="220" y="70" font-family="Arial" font-size="20" fill="#333">Sphere S₁</text>
+  <text x="170" y="95" font-family="Arial" font-size="18" fill="#333">(Radius R₁)</text>
   
   <!-- 半径 R2 の球面 S2 -->
   <circle cx="550" cy="200" r="160" stroke="#4682B4" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
-  <text x="600" y="70" font-family="Arial" font-size="20" fill="#333">球面 S₂</text>
-  <text x="600" y="95" font-family="Arial" font-size="18" fill="#333">(半径R₂)</text>
+  <text x="600" y="70" font-family="Arial" font-size="20" fill="#333">Sphere S₂</text>
+  <text x="600" y="95" font-family="Arial" font-size="18" fill="#333">(Radius R₂)</text>
   
   <!-- 凡例 -->
   <rect x="540" y="320" width="240" height="60" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
   <line x1="550" y1="335" x2="590" y2="335" stroke="#FF6347" stroke-width="2" stroke-dasharray="5,5"/>
-  <text x="600" y="340" font-family="Arial" font-size="14" fill="#333">球面S₁ (衛星1から)</text>
+  <text x="600" y="340" font-family="Arial" font-size="14" fill="#333">Sphere S₁ (from Satellite 1)</text>
   <line x1="550" y1="360" x2="590" y2="360" stroke="#4682B4" stroke-width="2" stroke-dasharray="5,5"/>
-  <text x="600" y="365" font-family="Arial" font-size="14" fill="#333">球面S₂ (衛星2から)</text>
+  <text x="600" y="365" font-family="Arial" font-size="14" fill="#333">Sphere S₂ (from Satellite 2)</text>
 </svg>

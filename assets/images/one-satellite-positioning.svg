@@ -24,15 +24,14 @@
   <text x="480" y="240" font-family="Arial" font-size="24" fill="#333">R₁ = cΔt</text>
   
   <!-- 時間の表示 -->
-  <text x="300" y="240" font-family="Arial" font-size="24" fill="#333">時刻: t₀</text>
-  <text x="546" y="320" font-family="Arial" font-size="24" fill="#333">時刻: t₀+Δt</text>
+  <text x="300" y="240" font-family="Arial" font-size="24" fill="#333">Time: t₀</text>
+  <text x="546" y="320" font-family="Arial" font-size="24" fill="#333">Time: t₀+Δt</text>
   
   <!-- 半径 R1 の球面 S1 -->
   <circle cx="400" cy="200" r="180" stroke="#FF6347" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
-  <text x="160" y="100" font-family="Arial" font-size="24" fill="#333">球面 S₁</text>
-  <text x="160" y="130" font-family="Arial" font-size="24" fill="#333">(半径R₁)</text>
+  <text x="160" y="100" font-family="Arial" font-size="24" fill="#333">Sphere S₁</text>
+  <text x="160" y="130" font-family="Arial" font-size="24" fill="#333">(Radius R₁)</text>
 
   <!-- スマートフォンの位置 Q -->
-  <text x="40" y="350" font-family="Arial" font-size="24" fill="#333">スマートフォンは</text>
-  <text x="40" y="380" font-family="Arial" font-size="24" fill="#333">球面S₁上のどこかにある！</text>
+  <text x="40" y="380" font-family="Arial" font-size="24" fill="#333">The smartphone is somewhere on the surface of Sphere S₁!</text>
 </svg>

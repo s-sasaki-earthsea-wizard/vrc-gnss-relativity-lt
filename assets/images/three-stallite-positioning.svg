@@ -20,7 +20,7 @@
 
   <!-- 円Cの表現（楕円で表現して立体感を出す） -->
   <ellipse cx="220" cy="200" rx="120" ry="40" stroke="#32CD32" stroke-width="3" fill="none"/>
-  <text x="200" y="150" font-family="Arial" font-size="18" fill="#32CD32">円C</text>
+  <text x="200" y="150" font-family="Arial" font-size="18" fill="#32CD32">Circle C</text>
   
   <!-- 円Cと球S3の交点 -->
   <circle cx="320" cy="180" r="6" fill="blue"/>
@@ -31,6 +31,6 @@
   
   <!-- 説明文 -->
   <rect x="40" y="360" width="400" height="30" fill="white" stroke="#333" stroke-width="1" rx="5" ry="5"/>
-  <text x="50" y="380" font-family="Arial" font-size="18" fill="#333">スマートフォンは点Q₁かQ₂のどちらかにある！</text>
+  <text x="50" y="380" font-family="Arial" font-size="18" fill="#333">The smartphone is either at point Q₁ or Q₂!</text>
 
 </svg>
